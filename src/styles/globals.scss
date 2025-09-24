@@ -1,0 +1,288 @@
+// Основные цвета
+$color-primary: #1e88e5;
+$color-primary-dark: #1565c0;
+$color-primary-light: #42a5f5;
+$color-secondary: #64b5f6;
+$color-accent: #4fc3f7;
+
+// Семантические цвета
+$color-success: #4caf50;
+$color-success-dark: #388e3c;
+$color-warning: #ff9800;
+$color-error: #f44336;
+$color-error-dark: #d32f2f;
+$color-info: #2196f3;
+
+// Нейтральная палитра
+$color-white: #ffffff;
+$color-gray-50: #f8fafc;
+$color-gray-100: #f1f5f9;
+$color-gray-200: #e2e8f0;
+$color-gray-300: #cbd5e1;
+$color-gray-400: #94a3b8;
+$color-gray-500: #64748b;
+$color-gray-600: #475569;
+$color-gray-700: #334155;
+$color-gray-800: #1e293b;
+$color-gray-900: #0f172a;
+
+// Цвета текста
+$text-primary: $color-gray-900;
+$text-secondary: $color-gray-600;
+$text-muted: $color-gray-500;
+$text-light: $color-gray-400;
+$text-white: $color-white;
+$text-on-primary: $color-white;
+
+// ГРАДИЕНТЫ
+// ===========================================
+$gradient-main: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+$gradient-primary: linear-gradient(135deg, $color-primary-light 0%, $color-primary 100%);
+$gradient-primary-hover: linear-gradient(135deg, $color-primary 0%, $color-primary-dark 100%);
+$gradient-card: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(240,248,255,0.95) 100%);
+$gradient-form: linear-gradient(135deg, #e0f2fe 0%, #b3e5fc 50%, #81d4fa 100%);
+$gradient-light: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+
+// РАЗМЕРЫ И ОТСТУПЫ
+// ===========================================
+$spacing-xs: 0.25rem;    // 4px
+$spacing-sm: 0.5rem;     // 8px
+$spacing-md: 0.75rem;    // 12px
+$spacing-lg: 1rem;       // 16px
+$spacing-xl: 1.5rem;     // 24px
+$spacing-2xl: 2rem;      // 32px
+$spacing-3xl: 3rem;      // 48px
+
+// РАДИУСЫ
+// ===========================================
+$radius-sm: 6px;
+$radius-md: 12px;
+$radius-lg: 16px;
+$radius-xl: 24px;
+$radius-full: 9999px;
+
+// Основной радиус (для обратной совместимости)
+$radius: $radius-md;
+
+// ТЕНИ
+// ===========================================
+$shadow-sm: 0 2px 4px rgba(0,0,0,.05);
+$shadow-md: 0 6px 16px rgba(0,0,0,.08);
+$shadow-lg: 0 12px 24px rgba(0,0,0,.12);
+$shadow-xl: 0 16px 32px rgba(0,0,0,.15);
+$shadow-blue: 0 8px 32px rgba(66, 165, 245, 0.25);
+$shadow-blue-lg: 0 16px 48px rgba(66, 165, 245, 0.3);
+
+// Основная тень (для обратной совместимости)
+$shadow: $shadow-md;
+
+// ТИПОГРАФИКА
+// ===========================================
+$font-size-xs: 0.75rem;    // 12px
+$font-size-sm: 0.875rem;   // 14px
+$font-size-base: 1rem;     // 16px
+$font-size-lg: 1.125rem;   // 18px
+$font-size-xl: 1.25rem;    // 20px
+$font-size-2xl: 1.5rem;    // 24px
+
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+$line-height-tight: 1.2;
+$line-height-normal: 1.5;
+$line-height-relaxed: 1.6;
+
+// АНИМАЦИИ
+// ===========================================
+$transition-fast: 0.15s ease;
+$transition-normal: 0.3s ease;
+$transition-slow: 0.5s ease;
+
+$transition-all: all $transition-normal;
+$transition-transform: transform $transition-normal;
+$transition-opacity: opacity $transition-normal;
+
+// Z-INDEX
+// ===========================================
+$z-dropdown: 1000;
+$z-sticky: 1020;
+$z-fixed: 1030;
+$z-modal-backdrop: 1040;
+$z-modal: 1050;
+$z-popover: 1060;
+$z-tooltip: 1070;
+
+// БЭКДРОП ФИЛЬТРЫ
+// ===========================================
+$blur-sm: blur(4px);
+$blur-md: blur(8px);
+$blur-lg: blur(12px);
+$blur-xl: blur(16px);
+
+// ===========================================
+// МИКСИНЫ
+// ===========================================
+
+// Glassmorphism эффект
+@mixin glassmorphism($bg: rgba(255, 255, 255, 0.9), $blur: $blur-md, $border: rgba(255, 255, 255, 0.2)) {
+  background: $bg;
+  backdrop-filter: $blur;
+  border: 1px solid $border;
+  box-shadow: $shadow-md;
+}
+
+// Эффект поднятия при hover
+@mixin hover-lift($translateY: -2px, $shadow: $shadow-lg) {
+  transition: $transition-all;
+  
+  &:hover {
+    transform: translateY($translateY);
+    box-shadow: $shadow;
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+// Эффект нажатия кнопки
+@mixin button-press($scale: 0.95) {
+  transition: $transition-transform;
+  
+  &:active {
+    transform: scale($scale);
+  }
+}
+
+// Градиентная кнопка
+@mixin gradient-button($gradient: $gradient-primary, $hover-gradient: $gradient-primary-hover) {
+  background: $gradient;
+  border: none;
+  color: $text-on-primary;
+  transition: $transition-all;
+  @include hover-lift();
+  @include button-press();
+  
+  &:hover, &:focus {
+    background: $hover-gradient;
+    color: $text-on-primary;
+  }
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    
+    &:hover {
+      transform: none;
+      box-shadow: none;
+    }
+  }
+}
+
+// Outline кнопка
+@mixin outline-button($color: $color-primary, $bg-hover: $color-primary) {
+  border: 2px solid $color;
+  color: $color;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: $blur-sm;
+  transition: $transition-all;
+  @include hover-lift(-1px, $shadow-md);
+  
+  &:hover, &:focus {
+    background: $bg-hover;
+    color: $text-on-primary;
+  }
+}
+
+// Стили для input полей
+@mixin form-control() {
+  background: $gradient-form;
+  border: 2px solid rgba($color-primary-light, 0.3);
+  border-radius: $radius;
+  transition: $transition-all;
+  backdrop-filter: $blur-sm;
+  
+  &:focus {
+    border-color: $color-primary-light;
+    box-shadow: 0 0 0 0.2rem rgba($color-primary-light, 0.25);
+    background: rgba($color-white, 0.9);
+    outline: none;
+  }
+  
+  &::placeholder {
+    color: rgba($color-primary, 0.7);
+  }
+}
+
+// Стили для карточек
+@mixin card($bg: $gradient-card) {
+  @include glassmorphism($bg, $blur-lg, rgba(255, 255, 255, 0.3));
+  border-radius: $radius;
+  overflow: hidden;
+}
+
+// Skeleton loading анимация
+@mixin skeleton($bg-color: $color-gray-200) {
+  background: linear-gradient(90deg, $bg-color 25%, lighten($bg-color, 5%) 50%, $bg-color 75%);
+  background-size: 200% 100%;
+  animation: skeleton 1.5s ease-in-out infinite;
+}
+
+// Анимация пульсации
+@mixin pulse($scale: 1.05) {
+  animation: pulse 0.3s ease-out;
+  
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale($scale); }
+    100% { transform: scale(1); }
+  }
+}
+
+// Плавное появление
+@mixin fade-in($duration: $transition-normal) {
+  animation: fadeIn $duration ease-out;
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+}
+
+// Плавное появление снизу
+@mixin slide-up($duration: $transition-normal, $distance: 20px) {
+  animation: slideUp $duration ease-out;
+  
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY($distance);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+// Общие анимации для скелетонов
+@keyframes skeleton {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+// Для обратной совместимости
+$brand: $color-primary;
+$blue-gradient-main: $gradient-main;
+$blue-gradient-card: $gradient-card;
+$blue-gradient-form: $gradient-form;
+$blue-gradient-button: $gradient-primary;
+$blue-gradient-hover: $gradient-primary-hover;

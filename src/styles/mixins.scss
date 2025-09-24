@@ -1,0 +1,196 @@
+// ДОПОЛНИТЕЛЬНЫЕ МИКСИНЫ ДЛЯ WEATHER APP
+
+@use './globals' as *;
+
+// Общие паттерны компонентов
+
+// Мемкардочка для детальной информации
+@mixin detail-card($bg: $gradient-card) {
+  @include card($bg);
+  padding: $spacing-lg;
+  margin-bottom: $spacing-lg;
+  
+  .detail-card__title {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-semibold;
+    color: $text-primary;
+    margin-bottom: $spacing-md;
+  }
+  
+  .detail-card__content {
+    color: $text-secondary;
+    line-height: $line-height-relaxed;
+  }
+}
+
+// Стили для weather card
+@mixin weather-card() {
+  @include detail-card();
+  text-align: center;
+  
+  .weather-card__temp {
+    font-size: 3rem;
+    font-weight: $font-weight-bold;
+    color: $text-primary;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .weather-card__description {
+    font-size: $font-size-lg;
+    color: $text-secondary;
+    text-transform: capitalize;
+  }
+  
+  .weather-card__location {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-semibold;
+    color: $text-primary;
+    margin-bottom: $spacing-md;
+  }
+}
+
+// Статистические карточки
+@mixin stat-card() {
+  @include glassmorphism(rgba($color-white, 0.8), $blur-sm, rgba($color-primary-light, 0.2));
+  padding: $spacing-lg;
+  border-radius: $radius;
+  text-align: center;
+  transition: $transition-all;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: $shadow-lg;
+  }
+  
+  .stat-card__value {
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-bold;
+    color: $color-primary;
+    display: block;
+  }
+  
+  .stat-card__label {
+    font-size: $font-size-sm;
+    color: $text-muted;
+    font-weight: $font-weight-medium;
+  }
+  
+  .stat-card__icon {
+    font-size: $font-size-xl;
+    margin-bottom: $spacing-sm;
+    opacity: 0.7;
+  }
+}
+
+// Лоадинг спиннер
+@mixin loading-spinner($size: 2rem, $color: $color-primary) {
+  width: $size;
+  height: $size;
+  border: 3px solid rgba($color, 0.2);
+  border-top: 3px solid $color;
+  border-radius: $radius-full;
+  animation: spin 1s linear infinite;
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+}
+
+// Бейдж компонент
+@mixin badge($bg: $color-primary, $color: $text-on-primary) {
+  background: $bg;
+  color: $color;
+  padding: $spacing-xs $spacing-sm;
+  border-radius: $radius-full;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: inline-block;
+}
+
+// Tooltip стили
+@mixin tooltip($bg: rgba($color-gray-800, 0.9), $color: $text-white) {
+  background: $bg;
+  color: $color;
+  padding: $spacing-xs $spacing-sm;
+  border-radius: $radius-sm;
+  font-size: $font-size-xs;
+  white-space: nowrap;
+  position: absolute;
+  z-index: $z-tooltip;
+  pointer-events: none;
+  opacity: 0;
+  transition: $transition-opacity;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 4px solid transparent;
+    border-top-color: $bg;
+  }
+  
+  &.show {
+    opacity: 1;
+  }
+}
+
+// Responsive breakpoints
+@mixin mobile-only {
+  @media (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin tablet-and-up {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin desktop-and-up {
+  @media (min-width: 1024px) {
+    @content;
+  }
+}
+
+// Скрытие для screen readers
+@mixin sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// Центрирование абсолютного элемента
+@mixin center-absolute {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// Ellipsis для длинного текста
+@mixin text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Smooth scroll
+@mixin smooth-scroll {
+  scroll-behavior: smooth;
+  
+  @media (prefers-reduced-motion: reduce) {
+    scroll-behavior: auto;
+  }
+}
