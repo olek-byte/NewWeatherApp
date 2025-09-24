@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # ☀️ Vue Weather App
 
 A modern, responsive weather application built with Vue 3, TypeScript, and the OpenWeatherMap API. Features real-time weather data, city search with autocomplete, a minimal AI weather advisor (Gemini/OpenAI via dev proxy), and a clean, intuitive interface.
@@ -271,3 +272,6 @@ This project is licensed under the MIT License.
 - [Vue.js](https://vuejs.org/) for the amazing framework
 - [Bootstrap](https://getbootstrap.com/) for the responsive design system
 - [Vite](https://vitejs.dev/) for the fast build tool
+=======
+# NewWeatherApp
+>>>>>>> 119c7c3c113d76bbb994110feaf2841090e29d89
